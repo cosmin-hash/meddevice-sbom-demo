@@ -1,0 +1,7 @@
+# Generated artifacts (regenerate with scripts/run_all.sh). The example VEX in
+# docs/ is committed as the showcased artifact; generated outputs are not.
+outputs/*.json
+outputs/*.txt
+__pycache__/
+*.pyc
+.venv/

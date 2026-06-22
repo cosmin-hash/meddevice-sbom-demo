@@ -1,0 +1,5 @@
+# Intentionally pinned to OLD versions so the scanner produces REAL findings.
+# This is a demonstration target only — never ship these versions.
+pyyaml==5.3.1
+requests==2.20.0
+jinja2==2.10

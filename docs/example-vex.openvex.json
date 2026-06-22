@@ -1,0 +1,29 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://your-consulting-domain/vex/meddevice-sample-app-2026-001",
+  "author": "Cosmin Mandachescu",
+  "role": "Independent Software Engineer",
+  "timestamp": "2026-06-21T00:00:00.000000-04:00",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": { "name": "CVE-2020-14343" },
+      "products": [ { "@id": "pkg:pypi/pyyaml@5.3.1" } ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path",
+      "impact_statement": "The application loads YAML only via yaml.safe_load(); the arbitrary-code-execution path that requires full load() is never reached. Confirmed by code review of sample-app/app.py."
+    },
+    {
+      "vulnerability": { "name": "CVE-EXAMPLE-AFFECTED-0001" },
+      "products": [ { "@id": "pkg:pypi/requests@2.20.0" } ],
+      "status": "affected",
+      "action_statement": "Upgrade requests to a current patched release in the next maintenance build; tracked in the project issue list. Interim mitigation: outbound calls restricted to a trusted internal host."
+    },
+    {
+      "vulnerability": { "name": "CVE-EXAMPLE-FIXED-0002" },
+      "products": [ { "@id": "pkg:pypi/jinja2@2.10" } ],
+      "status": "fixed",
+      "impact_statement": "Addressed by upgrading Jinja2 to a patched release in build 0.1.1."
+    }
+  ]
+}
