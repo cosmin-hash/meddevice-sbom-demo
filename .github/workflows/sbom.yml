@@ -1,0 +1,34 @@
+name: SBOM and vulnerability scan
+
+# Demonstrates SBOM generation automated in CI/CD — a maturity signal FDA's
+# premarket guidance expects (SPDF across the lifecycle).
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  sbom-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate SBOM (Syft)
+        uses: anchore/sbom-action@v0
+        with:
+          path: ./sample-app
+          format: cyclonedx-json
+          output-file: sbom.cdx.json
+
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.cdx.json
+
+      - name: Scan SBOM (Grype)
+        uses: anchore/scan-action@v4
+        with:
+          sbom: sbom.cdx.json
+          fail-build: false          # report, don't block — triage happens in VEX
+          output-format: table
+# Action versions drift; bump to current majors if CI warns.
